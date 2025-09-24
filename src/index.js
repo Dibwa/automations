@@ -5,6 +5,7 @@ const folderToWatch_tobacco_app =
 // const file=
 //   "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json"; // Replace with your desired folder path
 
+
 const file =
   "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json";
 
@@ -55,11 +56,17 @@ fs.watch(
   }
 );
 
+
+
+
+
 console.log(
   `Watching folder: Tobacco_flutter_android_app: ${folderToWatch_tobacco_app}`
 );
 const folderToWatch_shop_cashier_android =
   "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release"; // Replace with your desired folder path
+
+
 
 // fs.watch(
 //   folderToWatch_shop_cashier_android,
@@ -75,6 +82,7 @@ const folderToWatch_shop_cashier_android =
 //   `Watching folder: Shop Cashier android app: ${folderToWatch_shop_cashier_android}`
 // );
 
+
 const FormData = require("form-data"); // You might need to install 'form-data' package/
 upload_flutter_shop_cashier_android();
 async function upload_flutter_shop_cashier_android() {
@@ -84,6 +92,14 @@ async function upload_flutter_shop_cashier_android() {
   const filePath =
     "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/shop-cashier.apk"; // Replace with your file path
 
+
+
+
+
+
+
+
+
   const image_filePath =
     "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/android/app/src/main/res/mipmap-hdpi/shop-cashier-icon.png"; // Replace with your file path
   const url = 'https://www.storage.zilslogistics.com/api/v1/uploads/applications'; // Replace with your server's upload endpoint
@@ -92,6 +108,14 @@ async function upload_flutter_shop_cashier_android() {
   try {
     const form = new FormData();
 
+
+
+
+
+
+
+
+  
     form.append("applicationmetaData", obj);
     form.append("category", "APPLICATION");
     form.append("creator", "0971067790");
@@ -107,11 +131,13 @@ async function upload_flutter_shop_cashier_android() {
       },
     });
 
-    console.log("File uploaded successfully:", response.data);
+
+    console.log("File uploaded successfully:", response.status);
   } catch (error) {
     console.log("Error uploading file:", error);
   }
 }
+
 
 // const glob = require("glob");
 
@@ -174,6 +200,8 @@ async function upload_flutter_shop_cashier_android() {
 // //setInterval(monitorFolderSize, CHECK_INTERVAL_MS);
 
 const chokidar = require("chokidar");
+
+
 
 // Initialize watcher
 const watcher = chokidar.watch(folderToWatch_shop_cashier_android, {
