@@ -1,127 +1,42 @@
 const fs = require("fs");
 const { default: axios } = require("axios");
-const folderToWatch_tobacco_app =
-  "C:/Users/laure/OneDrive/Documents/tobbacco_management_system_android/build/app/outputs/apk/release"; // Replace with your desired folder path
-// const file=
-//   "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json"; // Replace with your desired folder path
 
-
-const file =
-  "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json";
-
-fs.watch(
-  folderToWatch_tobacco_app,
-  { recursive: true },
-  (eventType, filename) => {
-    console.log(`Detected ${eventType} in ${filename}`);
-    // Perform actions based on the eventType and filename
-    // e.g., recompile code, refresh a server, log the change
-
-    const hhh = false;
-    if (hhh == true) {
-      const { default: axios } = require("axios");
-      const fs = require("fs");
-
-      const path =
-        "C:/Users/laure/OneDrive/Documents/tobbacco_management_system_android/build/app/outputs/apk/release/tms.apk"; /** Path to the file */
-      const file = fs.readFileSync(path); /** Read file */
-      const stats =
-        fs.statSync(path); /** Get file size in bytes (for content-length) */
-      const fileSizeInBytes = stats.size;
-
-      /** Add appropriate headers */
-      const headers = {
-        Authorization: "Bearer Your Token" /** Optional */,
-        "Content-Length": fileSizeInBytes /** Recommended to add it */,
-        "Content-Type": "application/octet-stream",
-      };
-      let url = "https://www.example.com/remote-server-upload-url";
-
-      axios
-        .post(url, file, {
-          headers: headers,
-          maxContentLength: Infinity /** To avoid max content length error */,
-          maxBodyLength: Infinity /** To avoid max body length error */,
-        })
-        .then((response) => {
-          console.log("Zils Logistics");
-          console.log("Zils  ZaZa");
-          console.log("Dead Bitch");
-          console.log(response.data);
-        })
-        .catch((error) => {
-          return error;
-        });
-    }
-  }
-);
-
-
-
-
-
-console.log(
-  `Watching folder: Tobacco_flutter_android_app: ${folderToWatch_tobacco_app}`
-);
 const folderToWatch_shop_cashier_android =
   "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release"; // Replace with your desired folder path
+// M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_inventory/build/app/outputs/apk/release
 
+// const FormData = require("form-data"); // You might need to install 'form-data' package/
 
-
-// fs.watch(
-//   folderToWatch_shop_cashier_android,
-//   { recursive: true },
-//   (eventType, filename) => {
-//     console.log(`Detected ${eventType} in ${filename}`);
-//     // Perform actions based on the eventType and filename
-//     // e.g., recompile code, refresh a server, log the change
-//   }
-// );
-
-// console.log(
-//   `Watching folder: Shop Cashier android app: ${folderToWatch_shop_cashier_android}`
-// );
-
-
-const FormData = require("form-data"); // You might need to install 'form-data' package/
-upload_flutter_shop_cashier_android();
 async function upload_flutter_shop_cashier_android() {
   const file =
-    "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json";
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json";
 
   const filePath =
-    "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/shop-cashier.apk"; // Replace with your file path
-
-
-
-
-
-
-
-
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/shop-cashier.apk"; // Replace with your file path
 
   const image_filePath =
-    "C:/Users/laure/OneDrive/Documents/Shop_manager_applications/shop_manager_flutter_android_cashier/android/app/src/main/res/mipmap-hdpi/shop-cashier-icon.png"; // Replace with your file path
-  const url = 'https://www.storage.zilslogistics.com/api/v1/uploads/applications'; // Replace with your server's upload endpoint
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/android/app/src/main/res/mipmap-hdpi/shop-cashier-icon.png"; // Replace with your file path
+
+  const url =
+    "https://www.storage.zilslogistics.com/api/v1/uploads/applications"; // Replace with your server's upload endpoint
+  
+
+    
   //const url = "http://localhost:800/api/v1/uploads/applications"; // Replace with your server's upload endpoint
   var obj = JSON.stringify(fs.readFileSync(file, "utf8"));
   try {
     const form = new FormData();
 
 
-
-
-
-
-
-
-  
     form.append("applicationmetaData", obj);
     form.append("category", "APPLICATION");
     form.append("creator", "0971067790");
     form.append("fileName", "shop-cashier");
     form.append("uploadName", "shop-cashier");
-
+    form.append(
+      "description",
+      "Process transactions both electronically and physically"
+    );
     form.append("appIcon", fs.createReadStream(image_filePath));
     form.append("files", fs.createReadStream(filePath)); // 'myFile' is the field name on the server
 
@@ -132,12 +47,98 @@ async function upload_flutter_shop_cashier_android() {
     });
 
 
+
     console.log("File uploaded successfully:", response.status);
   } catch (error) {
     console.log("Error uploading file:", error);
   }
 }
 
+
+
+
+
+
+async function upload_flutter_shop_inventory_android() {
+  const file =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_inventory/build/app/outputs/apk/release/output-metadata.json";
+
+  const filePath =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_inventory/build/app/outputs/apk/release/shop-inventory.apk"; // Replace with your file path
+
+  const image_filePath =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_inventory/android/app/src/main/res/mipmap-hdpi/shop_manager_icon.png"; // Replace with your file path
+
+  const url =
+    "https://www.storage.zilslogistics.com/api/v1/uploads/applications"; // Replace with your server's upload endpoint
+  //const url = "http://localhost:800/api/v1/uploads/applications"; // Replace with your server's upload endpoint
+  var obj = JSON.stringify(fs.readFileSync(file, "utf8"));
+  try {    const FormData = require('form-data');
+    const form = new FormData();
+
+    form.append("applicationmetaData", obj);
+    form.append("category", "APPLICATION");
+    form.append("creator", "0971067790");
+    form.append("fileName", "shop-inventory");
+    form.append("uploadName", "shop-inventory");
+    form.append(
+      "description",
+      "Quickens the process of managing your inventory"
+    );
+    form.append("appIcon", fs.createReadStream(image_filePath));
+    form.append("files", fs.createReadStream(filePath)); // 'myFile' is the field name on the server
+
+    const response = await axios.post(url, form, {
+      headers: {
+        ...form.getHeaders(), // Important for setting the correct Content-Type header
+      },
+    });
+
+    console.log("File uploaded successfully:", response.status);
+  } catch (error) {
+    console.log("Error uploading file:", error);
+  }
+}
+async function upload_flutter_shop_admin_android() {
+  const file =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/output-metadata.json";
+
+  const filePath =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/build/app/outputs/apk/release/shop-cashier.apk"; // Replace with your file path
+
+  const image_filePath =
+    "M:/kadi_projects/Shop_manager_applications/shop_manager_flutter_android_cashier/android/app/src/main/res/mipmap-hdpi/shop-cashier-icon.png"; // Replace with your file path
+
+  const url =
+    "https://www.storage.zilslogistics.com/api/v1/uploads/applications"; // Replace with your server's upload endpoint
+  //const url = "http://localhost:800/api/v1/uploads/applications"; // Replace with your server's upload endpoint
+  var obj = JSON.stringify(fs.readFileSync(file, "utf8"));
+  try {
+    const form = new FormData();
+
+    form.append("applicationmetaData", obj);
+    form.append("category", "APPLICATION");
+    form.append("creator", "0971067790");
+    form.append("fileName", "shop-cashier");
+    form.append("uploadName", "shop-cashier");
+    form.append(
+      "description",
+      "Process transactions both electronically and physical"
+    );
+    form.append("appIcon", fs.createReadStream(image_filePath));
+    form.append("files", fs.createReadStream(filePath)); // 'myFile' is the field name on the server
+
+    const response = await axios.post(url, form, {
+      headers: {
+        ...form.getHeaders(), // Important for setting the correct Content-Type header
+      },
+    });
+
+    console.log("File uploaded successfully:", response.status);
+  } catch (error) {
+    console.log("Error uploading file:", error);
+  }
+}
 
 // const glob = require("glob");
 
@@ -201,8 +202,6 @@ async function upload_flutter_shop_cashier_android() {
 
 const chokidar = require("chokidar");
 
-
-
 // Initialize watcher
 const watcher = chokidar.watch(folderToWatch_shop_cashier_android, {
   ignored: /(^|[\/\\])\../, // ignore dotfiles
@@ -215,12 +214,14 @@ const watcher = chokidar.watch(folderToWatch_shop_cashier_android, {
 watcher
   .on("add", (path) => {
     console.log(`File ${path} has been added`);
-
-    upload_flutter_shop_cashier_android();
+//upload_flutter_shop_inventory_android();
+    // upload_flutter_shop_cashier_android();
   })
   .on("change", (path) => {
     console.log(`File ${path} has been changed`);
-    upload_flutter_shop_cashier_android();
+
+    //upload_flutter_shop_inventory_android();
+    // upload_flutter_shop_cashier_android();
   })
   .on("unlink", (path) => console.log(`File ${path} has been removed`))
   .on("addDir", (path) => console.log(`Directory ${path} has been added`))
@@ -282,9 +283,15 @@ const applicationSchema = new mongoose.Schema({
 
 
 
-
-
-
-
 module.exports = mongoose.model("Applications", applicationSchema);
+const http = require('https');
+http.globalAgent.keepAlive = true;
+// Accessing the http.globalAgent
+console.log(http.globalAgent);
+
+upload_flutter_shop_inventory_android();
+//upload_flutter_shop_cashier_android();
+// Output will show details about the Agent instance,
+// including its options and socket management properties.
+
 
